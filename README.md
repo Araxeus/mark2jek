@@ -10,6 +10,20 @@
 
 ### 🏠 [Homepage](https://github.com/Araxeus/mark2jek/)
 
+## Replaces:
+
+* ` ```language` -> `{% highlight language %}`
+
+* ` ``` ` -> `{% endhighlight %}`
+
+* ` [![xx](imageURL)](linkURL) 
+ ` -> `<a href ="linkURL"><img src="imageURL"></a>`
+
+* ` ![](imageUrl)
+ ` -> `<img src="imageUrl">`
+
+* ` https://github.com/owner/repo/blob/branch/folders/file.png ` -> `https://raw.githubusercontent.com/owner/repo/branch/folders/file.png`
+
 ## Install
 
 ```sh
@@ -21,8 +35,12 @@ yarn add mark2jek
 ```sh
 yarn mark2jek docs/page.md
 ```
+or
+```sh
+yarn m2jek example.md
+```
 
-## Run tests
+## Test Version tests
 
 ```sh
 mark2jek --version
@@ -48,4 +66,4 @@ Copyright © 2021 [Araxeus](https://github.com/Araxeus).<br />
 This project is [MIT](https://github.com/Araxeus/mark2jek/blob/main/LICENSE) licensed.
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+> Doesn't work if markdown have code blocks without language specified
