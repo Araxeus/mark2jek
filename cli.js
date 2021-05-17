@@ -43,7 +43,7 @@ function doRegex(data) {
         .replace(/\`\`\`([^\s]+)\s*?\n(?s:(.*?))\`\`\`/g, "{% highlight $1 %}\n$2\n{% endhighlight %}")
         .replace(/\[!\[.*\]\((.+)\)]\((.+)\)/g, '<a href ="$2"><img src="$1"></a>')
         .replace(/!\[.*\]\((.*)\)/g, '<img src="$1">')
-        .replace(/(?:https|http):\/\/github.com\/.*\/blob.*\.(?:png|svg|jpg|jpeg|gif|webp|bmp)(?!\?raw=true)/gi, "$1?raw=true")
+        .replace(/(https?:\/+github.com\/+[^\/]+\/+[^\/]+\/+blob\/+.+\.(?:png|svg|jpg|jpeg|gif|webp|bmp)(?!\?raw=true))/gi, "$1?raw=true")
 }
 
 function sendError(errorCode) {
