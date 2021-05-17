@@ -16,14 +16,18 @@ npm install -g mark2jek
 
 ## Basic Usage
 
+#### convert file:
 format: [`mark2jek`/`m2jek` `inputFile`(relative) `--new newName`(optional)]. for example:
 
 ```sh
-mark2jek index.md --noCodeblock//overwrites it
+mark2jek index.md                  //overwrites input file
+m2jek docs/readme.md --new page   //output will be docs/page.md
 ```
-or
+
+#### change config:
+
 ```sh
-m2jek docs/readme.md --new index //output will be docs/index.md
+m2jek setup
 ```
 
 ## List Of Commands
@@ -38,7 +42,7 @@ You can specify flags when executing a task.(**case insensitive**)
 each flag can have a few variant names, but you can always prepend `no` to disable the flag
 (these method always overwrite the flags set in the config)
 for example:
-`--codeblock` `--noCodeblock`
+`mark2jek index.md --codeblock` `mark2jek index.md --noCodeblock`
 
 #### Full list:
 
