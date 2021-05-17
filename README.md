@@ -8,27 +8,7 @@
 
 ### 🏠 [Homepage](https://github.com/Araxeus/mark2jek/)
 
-## Replaces:
-
-*  ```
-     ```languageName
-     codeblock lines
-     ```‎
-   ```
-   =
-   ```liquid
-    {% highlight languageName %}
-    codeblock lines
-    {% endhighlight %}
-   ```
-   
-* ` [![xx](imageURL)](linkURL) 
- ` -> `<a href ="linkURL"><img src="imageURL"></a>`
-
-* ` ![](imageUrl)` = `<img src="imageUrl">`
-
-* ` https://github.com/owner/repo/blob/branch/folders/file.png ` =
-   `https://raw.githubusercontent.com/owner/repo/branch/folders/file.png`
+see flags below for full feature list
 
 ## Install
 
@@ -36,22 +16,74 @@
 npm install -g mark2jek
 ```
 
-## Usage
+## Basic Usage
 
-format: [`mark2jek`/`m2jek` `inputFile`(relative) `newName`(optional)]. for example:
+format: [`mark2jek`/`m2jek` `inputFile`(relative) `--new newName`(optional)]. for example:
 
 ```sh
-mark2jek docs/page.md formatted.md
+mark2jek index.md --noCodeblock//overwrites it
 ```
 or
 ```sh
-m2jek example.md
+m2jek docs/readme.md --new index //output will be docs/index.md
 ```
 
-## Test Version tests
+## List Of Commands
 
+#### version check
 ```sh
 mark2jek --version
+```
+
+### Flags
+You can specify flags when executing a task.(**case insensitive**)
+each flag can have a few variant names, but you can always prepend `no` to disable the flag
+(these method always overwrite the flags set in the config)
+for example:
+`--codeblock` `--noCodeblock`
+
+#### Full list:
+
+* `--new FILENAME` - creates new file with FILENAME
+
+* `--images` - convert `![](x)` to `<img src=x>`
+
+* `--nestedUrl` `--nested` - convert `[![](x)](y)` to `<a href=y><img src=x></a>`
+
+* `--raw` `--githubRaw` - convert github images to raw version
+
+* `--collapsible` `--expand` - adds an icon for collapsible content
+
+*  `--codeblock` - replace:
+    ```
+     ```languageName
+     codeblock lines
+     ```‎
+   ```
+   with:
+   ```liquid
+    {% highlight languageName %}
+    codeblock lines
+    {% endhighlight %}
+   ```
+
+### Config
+you can save settings as permanent flags in the config
+> all the following commands are to be used when not specifying a file to work on
+
+#### interactive config changer
+```sh
+m2jek setup OR help
+```
+
+#### show flags list (config options)
+```sh
+m2jek flags OR list
+```
+
+#### individually set flags
+```sh
+m2jek set noCodeblock nested noCollapsible [flags without --]
 ```
 
 ## Author
