@@ -10,17 +10,25 @@
 
 ## Replaces:
 
-* ` ```language` -> `{% highlight language %}`
-
-* ` ``` ` -> `{% endhighlight %}`
-
+*  ```
+     ```languageName
+     codeblock lines
+     ```‎
+   ```
+   =
+   ```liquid
+    {% highlight languageName %}
+    codeblock lines
+    {% endhighlight %}
+   ```
+   
 * ` [![xx](imageURL)](linkURL) 
  ` -> `<a href ="linkURL"><img src="imageURL"></a>`
 
-* ` ![](imageUrl)
- ` -> `<img src="imageUrl">`
+* ` ![](imageUrl)` = `<img src="imageUrl">`
 
-* ` https://github.com/owner/repo/blob/branch/folders/file.png ` -> `https://raw.githubusercontent.com/owner/repo/branch/folders/file.png`
+* ` https://github.com/owner/repo/blob/branch/folders/file.png ` =
+   `https://raw.githubusercontent.com/owner/repo/branch/folders/file.png`
 
 ## Install
 
