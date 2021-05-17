@@ -9,5 +9,6 @@
   "bin": {
     "mark2jek": "cli.js",
     "m2jek": "cli.js"
-  }
+  },
+  "dependencies": {}
 }

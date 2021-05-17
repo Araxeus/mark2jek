@@ -25,17 +25,17 @@
 ## Install
 
 ```sh
-yarn add mark2jek
+npm install -g mark2jek
 ```
 
 ## Usage
 
 ```sh
-yarn mark2jek docs/page.md
+mark2jek docs/page.md
 ```
 or
 ```sh
-yarn m2jek example.md
+m2jek example.md
 ```
 
 ## Test Version tests
