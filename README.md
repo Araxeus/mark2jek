@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to mark2jek - markdown to jekyll converter</h1>
+<h1 align="center">mark2jek - markdown to jekyll converter</h1>
 
 [![NPM Version](https://img.shields.io/npm/v/mark2jek)](https://www.npmjs.com/package/mark2jek) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Araxeus/mark2jek/blob/main/LICENSE) 
