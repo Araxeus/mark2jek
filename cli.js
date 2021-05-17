@@ -40,7 +40,7 @@ async function run() {
 
 function doRegex(data) {
     return data
-        .replace(/\`\`\`(.+)\n(?s:(.*?))\`\`\`/g, "{% highlight $1 %}\n$2\n{% endhighlight %}")
+        .replace(/\`\`\`([^\s]+)\s*?\n(?s:(.*?))\`\`\`/g, "{% highlight $1 %}\n$2\n{% endhighlight %}")
         .replace(/\[!\[.*\]\((.+)\)]\((.+)\)/g, '<a href ="$2"><img src="$1"></a>')
         .replace(/!\[.*\]\((.*)\)/g, '<img src="$1">')
         .replace(/(?:https|http):\/\/github.com\/(.*)\/blob/g, "https://raw.githubusercontent.com/$1")
