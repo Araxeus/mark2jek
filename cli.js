@@ -1,6 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 
+if (process.argv[2] === "--version") {
+    console.log("mark2jek v"+require('./package.json').version)
+    process.exit(0);
+} 
+
 let filePath;
 let savePath;
 
