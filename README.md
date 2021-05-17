@@ -5,9 +5,8 @@
 <a href ="https://github.com/Araxeus/mark2jek/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a> 
 <a href ="https://github.com/Araxeus/mark2jek"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>
 </p>
-> Replace markdown syntax with jekyll/html for compatibility
 
-<a href ="https://www.npmjs.com/package/mark2jek"><img src="https://img.shields.io/npm/v/mark2jek"></a> 
+> Replace markdown syntax with jekyll/html for compatibility
 
 ## Install
 
