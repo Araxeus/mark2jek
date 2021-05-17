@@ -1,10 +1,8 @@
-<h1 align="center">Welcome to mark2jek 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-(1.0.0)-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/Araxeus/mark2jek/blob/main/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
-  </a>
-</p>
+<h1 align="center">Welcome to mark2jek - markdown to jekyll converter</h1>
+
+[![NPM Version](https://img.shields.io/npm/v/mark2jek)](https://www.npmjs.com/package/mark2jek) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Araxeus/mark2jek/blob/main/LICENSE) 
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Araxeus/mark2jek)
 
 > Replace markdown syntax with jekyll/html for compatibility
 
