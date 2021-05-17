@@ -1,14 +1,10 @@
-<h1 align="center">mark2jek - markdown to jekyll converter</h1>
+<h1 align="center">🏠 <a href="https://github.com/Araxeus/mark2jek">mark2jek<a> - markdown to jekyll converter</h1>
 
 [![NPM Version](https://img.shields.io/npm/v/mark2jek)](https://www.npmjs.com/package/mark2jek) 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Araxeus/mark2jek/blob/main/LICENSE) 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Araxeus/mark2jek)
 
 > Replace markdown syntax with jekyll/html for compatibility
-
-### 🏠 [Homepage](https://github.com/Araxeus/mark2jek/)
-
-see flags below for full feature list
 
 ## Install
 
