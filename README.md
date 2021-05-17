@@ -30,8 +30,10 @@ npm install -g mark2jek
 
 ## Usage
 
+format: [`mark2jek`/`m2jek` `inputFile`(relative) `newName`(optional)]. for example:
+
 ```sh
-mark2jek docs/page.md
+mark2jek docs/page.md formatted.md
 ```
 or
 ```sh
