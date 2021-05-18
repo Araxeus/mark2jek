@@ -4,7 +4,6 @@ const readline = require("readline");
 const fs = require("fs");
 const path = require("path");
 
-const util = require('util');
 const { log, code } = require("./cli");
 
 const lines = (...lineGroup) => {
@@ -59,7 +58,7 @@ exports.getCollapsibleStyle = () => {
         );
     }
     catch {
-        log.warning('Could not load custom collapsible css');
+        log.warn('Could not load custom collapsible css');
         return "";
     }
 }
@@ -71,7 +70,6 @@ exports.Prompt = class Prompt {
             input: process.stdin,
             output: process.stdout
         });
-        this.asyncQuestion = util.promisify(this.cmd.question).bind(this.cmd);
     }
 
     /** asks a yes/no question and sets object.value accordingly */
@@ -80,13 +78,22 @@ exports.Prompt = class Prompt {
             let answer = await this.asyncQuestion(questionText);
             this.parseAnswer(answer, key);        
         } catch (err) {
-            if (err?.message) return;
-            this.parseAnswer(err, key);
+            log.warn(err.message || err)
         }
     }
 
+    async asyncQuestion(text) {
+        return new Promise((resolve, reject) => {
+           try {
+            this.cmd.question(text, (answer) => {
+              resolve(answer);
+            });
+           } catch(e) {reject(e);}
+        });
+    }
+
     parseAnswer(answer, key) {
-        if (answer === undefined) answer = "";
+        if (!answer) return;
             if (key === "outputName") {
                 answer = (answer.match(/(?!")(.*)(?<!")/) || [null, answer])[1];
                 switch (answer.toLowerCase()) {
@@ -95,13 +102,13 @@ exports.Prompt = class Prompt {
                     case "false":
                     case "no":
                     case "n":
+                    case "x":
                     case " ":
                         this.config[key].value = ""; return;
                     case "enable":
                     case "true":
                     case "yes":
                     case "y":
-                    case "":
                         return;
                     default:
                         this.config[key].value = answer; return;

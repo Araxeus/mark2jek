@@ -4,7 +4,17 @@
   "description": "Replace markdown syntax with jekyll/html for compatibility",
   "main": "cli.js",
   "repository": "https://github.com/Araxeus/mark2jek",
-  "author": "Araxeus",
+  "keywords": [
+    "markdown",
+    "jekyll",
+    "helper",
+    "fix"
+  ],
+  "author": {
+    "name": "Araxeus",
+    "email": "araxeus@users.noreply.github.com",
+    "url": "https://github.com/araxeus"
+  },
   "license": "MIT",
   "bin": {
     "mark2jek": "cli.js",

@@ -17,7 +17,7 @@ const log = {
     info: (e) => log.out(info(e)),
     important: (e) => log.out(important(e)),
     error: (e) => log.out(red.bold("Error! " + e)),
-    warning: (e) => log.out(warning("Warning! " + e)),
+    warn: (e) => log.out(warning("Warning! " + e)),
     success: (e) => log.out(green("Success! " + e))
 }
 
@@ -257,7 +257,7 @@ function sendError(errorCode) {
 async function saveAndExit() {
     fs.writeFile(path.join(__dirname, 'config.json'), JSON.stringify(config, null, "\t"), (err) => {
         if (err) {
-            log.warning('Could not save configuration data. details:');
+            log.warn('Could not save configuration data. details:');
             log.out(err.message);
         } else {
             log.success('Saved Configuration')
@@ -274,7 +274,7 @@ async function loadConfig() {
         }
     }
     catch {
-        log.warning('There has been an error parsing config.json, using default config');
+        log.warn('There has been an error parsing config.json, using default config');
         config = { ...defaultConfig };
     }
 }
