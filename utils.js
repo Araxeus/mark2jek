@@ -76,7 +76,7 @@ exports.Prompt = class Prompt {
     async question(questionText, key) {
         try {
             let answer = await this.asyncQuestion(questionText);
-            this.parseAnswer(answer, key);        
+            this.parseAnswer(answer, key);
         } catch (err) {
             log.warn(err.message || err)
         }
@@ -84,50 +84,50 @@ exports.Prompt = class Prompt {
 
     async asyncQuestion(text) {
         return new Promise((resolve, reject) => {
-           try {
-            this.cmd.question(text, (answer) => {
-              resolve(answer);
-            });
-           } catch(e) {reject(e);}
+            try {
+                this.cmd.question(text, (answer) => {
+                    resolve(answer);
+                });
+            } catch (e) { reject(e); }
         });
     }
 
     parseAnswer(answer, key) {
         if (!answer) return;
-            if (key === "outputName") {
-                answer = (answer.match(/(?!")(.*)(?<!")/) || [null, answer])[1];
-                switch (answer.toLowerCase()) {
-                    case "delete":
-                    case "disable":
-                    case "false":
-                    case "no":
-                    case "n":
-                    case "x":
-                    case " ":
-                        this.config[key].value = ""; return;
-                    case "enable":
-                    case "true":
-                    case "yes":
-                    case "y":
-                        return;
-                    default:
-                        this.config[key].value = answer; return;
-                }
-            } else {
-                switch (answer.toLowerCase()) {
-                    case "enable":
-                    case "true":
-                    case "yes":
-                    case "y":
-                        this.config[key].value = true; return;
-                    case "disable":
-                    case "false":
-                    case "no":
-                    case "n":
-                    case "x":
-                        this.config[key].value = false; return;
-                    default: return;
-                }
+        if (key === "outputName") {
+            answer = (answer.match(/(?!")(.*)(?<!")/) || [null, answer])[1];
+            switch (answer.toLowerCase()) {
+                case "delete":
+                case "disable":
+                case "false":
+                case "no":
+                case "n":
+                case "x":
+                case " ":
+                    this.config[key].value = ""; return;
+                case "enable":
+                case "true":
+                case "yes":
+                case "y":
+                    return;
+                default:
+                    this.config[key].value = answer; return;
             }
+        } else {
+            switch (answer.toLowerCase()) {
+                case "enable":
+                case "true":
+                case "yes":
+                case "y":
+                    this.config[key].value = true; return;
+                case "disable":
+                case "false":
+                case "no":
+                case "n":
+                case "x":
+                    this.config[key].value = false; return;
+                default: return;
+            }
+        }
     }
 }

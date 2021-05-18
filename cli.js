@@ -70,7 +70,7 @@ async function versionCheck() {
     process.exit(0);
 }
 
-async function setup() { //TODO
+async function setup() {
     log.out(lines(
         important("Launching Interactive Config Manager"),
         info("- leave empty to use current value"),
@@ -116,7 +116,7 @@ async function list() {
         { code: "m2jek todo.txt --noRaw new=index.md", info: "run without raw flag, saves to index.md" },
     )
 
-    printCommand(["setup", "config"], `description ${code("command")}`); //TODO
+    printCommand(["setup", "config"], "Launch an Interactive Config Changer");
 
     printCommand(["new=filename.md", 'new="my long filename.md"'],
         "saves output to *filename*",
@@ -191,7 +191,6 @@ function extractNew(arg) {
 }
 
 async function run() {
-    //process.argv -> [1]=location launched [2]=appended arg
     try {
         filePath = path.join(process.cwd(), process.argv[2]);
     } catch { sendError(1) }
