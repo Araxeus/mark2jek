@@ -74,10 +74,6 @@ exports.Prompt = class Prompt {
         this.asyncQuestion = util.promisify(this.cmd.question).bind(this.cmd);
     }
 
-    async output() {
-        console.log(JSON.stringify(this.config, null, "\t"));
-    }
-
     /** asks a yes/no question and sets object.value accordingly */
     async question(questionText, key) {
         try {

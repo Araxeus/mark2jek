@@ -89,7 +89,7 @@ async function setup() { //TODO
         if (config[key].value !== savedValue)
             log.out(`Saved new value: ${coloredValue(config[key].value)}`)
     }
-    await prompt.output();
+
     saveAndExit();
 }
 
