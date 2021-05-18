@@ -124,6 +124,7 @@ exports.Prompt = class Prompt {
                     case "false":
                     case "no":
                     case "n":
+                    case "x":
                         this.config[key].value = false; return;
                     default: return;
                 }

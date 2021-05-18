@@ -17,17 +17,17 @@ npm install -g mark2jek
 ## Basic Usage
 
 #### convert file:
-format: [`mark2jek`/`m2jek` `inputFile`(relative) `--new newName`(optional)]. for example:
+format: [`mark2jek`/`m2jek` `inputFile`(relative) `new=newName`(optional)]. for example:
 
 ```sh
 mark2jek index.md                  //overwrites input file
-m2jek docs/readme.md --new page   //output will be docs/page.md
+m2jek docs/readme.md new=page   //output will be docs/page.md
 ```
 
-#### change config:
+#### interactive config changer:
 
 ```sh
-m2jek setup
+m2jek setup / config
 ```
 
 ## List Of Commands
@@ -39,24 +39,27 @@ mark2jek --version
 
 ### Flags
 You can specify flags when executing a task.(**case insensitive**)
-each flag can have a few variant names, but you can always prepend `no` to disable the flag
+each flag can have a few variant names, but you can always prepend `no` to disable the flag (except `new=` where you have)
 (these method always overwrite the flags set in the config)
 for example:
-`mark2jek index.md --codeblock` `mark2jek index.md --noCodeblock`
+`mark2jek index.md --raw` `mark2jek index.md --noRaw`
 
 #### Full list:
 
-* `--new FILENAME` - creates new file with FILENAME
+* `--new=FILENAME` or `new=FILENAME` - creates new file with FILENAME
+  to disable:
+   * with `set` just input nothing like `m2jek set new=`
+   * in `setup` input `delete/disable/false/no/n/x` or just space
 
-* `--images` - convert `![](x)` to `<img src=x>`
+* `--pics` or `--images`- convert `![](x)` to `<img src=x>`
 
-* `--nestedUrl` `--nested` - convert `[![](x)](y)` to `<a href=y><img src=x></a>`
+* `--nestedUrl` or `--nested` - convert `[![](x)](y)` to `<a href=y><img src=x></a>`
 
-* `--raw` `--githubRaw` - convert github images to raw version
+* `--githubRaw` or `--raw` - convert github images to raw version
 
-* `--collapsible` `--expand` - adds an icon for collapsible content
+* `--collapsible` or `--expand` - adds an icon for collapsible content
 
-*  `--codeblock` - replace:
+*  `--codeblock` or `--liquid` - replace:
     ```
      ```languageName
      codeblock lines
@@ -75,12 +78,17 @@ you can save settings as permanent flags in the config
 
 #### interactive config changer
 ```sh
-m2jek setup OR help
+m2jek setup / config
 ```
 
-#### show flags list (config options)
+#### show all commands (including flags)
 ```sh
-m2jek flags OR list
+m2jek list / help
+```
+
+#### show flags
+```
+m2jek flags
 ```
 
 #### individually set flags

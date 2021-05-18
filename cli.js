@@ -50,7 +50,7 @@ async function parseArg() {
     switch (process.argv[2].toLowerCase()) {
         case "--version":
             versionCheck(); break;
-        case "interactive":
+        case "config":
         case "setup":
             setup(); break;
         case "help":
@@ -75,7 +75,7 @@ async function setup() { //TODO
         important("Launching Interactive Config Manager"),
         info("- leave empty to use current value"),
         ` - ${code("enable/true/yes/y")} to enable`,
-        ` - ${code("disable/false/no/n")} to disable))`));
+        ` - ${code("disable/false/no/n/x")} to disable))`));
 
     log.info(`for more info on each command, use ${code("m2jek help")} or ${code("m2jek list")}\n`)
 
@@ -116,7 +116,7 @@ async function list() {
         { code: "m2jek todo.txt --noRaw new=index.md", info: "run without raw flag, saves to index.md" },
     )
 
-    printCommand(["setup", "interactive"], `description ${code("command")}`); //TODO
+    printCommand(["setup", "config"], `description ${code("command")}`); //TODO
 
     printCommand(["new=filename.md", 'new="my long filename.md"'],
         "saves output to *filename*",
