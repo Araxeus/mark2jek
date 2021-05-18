@@ -87,7 +87,7 @@ async function setup() { //TODO
             ` ${important(key)} / ${important(element.alias)} (${coloredValue(savedValue)}):`,
             key);
         if (config[key].value !== savedValue)
-            log.out(`Saved new value: ${coloredValue(config[key].value)}`)
+            log.info(`Saved new value: ${coloredValue(config[key].value)}`)
     }
 
     saveAndExit();

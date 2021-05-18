@@ -1,3 +1,7 @@
+details {
+    display: flex;
+}
+
 details>summary {
   list-style-type: none;
   outline: none;
