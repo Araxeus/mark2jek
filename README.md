@@ -42,7 +42,10 @@ You can specify flags when executing a task.(**case insensitive**)
 each flag can have a few variant names, but you can always prepend `no` to disable the flag (except `new=` where you have)
 (these method always overwrite the flags set in the config)
 for example:
-`mark2jek index.md --raw` `mark2jek index.md --noRaw`
+```sh
+mark2jek index.md --raw
+mark2jek index.md --noRaw new=pg.md --pics
+```
 
 #### Full list:
 
