@@ -1,0 +1,32 @@
+{
+	"outputName": {
+		"alias": "new=",
+		"value": "",
+		"description": "Special flag that specify the output filename (relative from input file directory)\nUsed only as \u001b[37m\u001b[40mnew=filename\u001b[49m\u001b[39m or \u001b[37m\u001b[40m--new=filename\u001b[49m\u001b[39m. can leave empty to disable (not in setup)"
+	},
+	"pics": {
+		"alias": "images",
+		"value": true,
+		"description": "Converts \u001b[37m\u001b[40m![](x)\u001b[49m\u001b[39m to \u001b[37m\u001b[40m<img src=x>\u001b[49m\u001b[39m"
+	},
+	"nested": {
+		"alias": "nestedUrl",
+		"value": true,
+		"description": "Converts \u001b[37m\u001b[40m[![](x)](y)\u001b[49m\u001b[39m to \u001b[37m\u001b[40m<a href=y><img src=x></a>\u001b[49m\u001b[39m"
+	},
+	"raw": {
+		"alias": "githubRaw",
+		"value": true,
+		"description": "Convert github images to raw version (if needed)"
+	},
+	"expand": {
+		"alias": "collapsible",
+		"value": true,
+		"description": "Adds an icon to start collapsible content description (after \u001b[37m\u001b[40m<summary>\u001b[49m\u001b[39m)"
+	},
+	"codeblock": {
+		"alias": "liquid",
+		"value": true,
+		"description": "Replace:\n\u001b[37m\u001b[40m```languageName\u001b[49m\u001b[39m\n\u001b[37m\u001b[40mcodeblock lines\u001b[49m\u001b[39m\n\u001b[37m\u001b[40m```‎\u001b[49m\u001b[39m\nWith:\n\u001b[37m\u001b[40m{% highlight languageName %}\u001b[49m\u001b[39m\n\u001b[37m\u001b[40mcodeblock lines\u001b[49m\u001b[39m\n\u001b[37m\u001b[40m{% endhighlight %}\u001b[49m\u001b[39m"
+	}
+}
