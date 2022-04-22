@@ -1,9 +1,11 @@
 {
   "name": "mark2jek",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Replace markdown syntax with jekyll/html for compatibility",
   "main": "cli.js",
+  "exports": "./cli.js",
   "repository": "https://github.com/Araxeus/mark2jek",
+  "type": "module",
   "keywords": [
     "markdown",
     "jekyll",
@@ -22,6 +24,6 @@
     "m2jek": "cli.js"
   },
   "dependencies": {
-    "chalk": "^4.1.1"
+    "chalk": "^5.2.0"
   }
 }
