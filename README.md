@@ -16,19 +16,22 @@ npm install -g mark2jek
 
 ## Basic Usage
 
-#### convert file:
 format: [`mark2jek`/`m2jek` `inputFile`(relative) `new=newName`(optional)]. for example:
 
 ```sh
 mark2jek index.md                  //overwrites input file
 m2jek docs/readme.md new=page   //output will be docs/page.md
 ```
+by default all flags are enabled, you can change your preset with the config changer, or specify flags on a single run
 
 #### interactive config changer:
-
 ```sh
 m2jek setup / config
 ```
+  
+#### Example of github workflow using this package for automatic gh-pages releases when main/README.md is changed:
+  
+  [custom-electron-prompt/main/.github/workflows/update-github-pages.yml](https://github.com/Araxeus/custom-electron-prompt/blob/main/.github/workflows/update-github-pages.yml)
 
 ## List Of Commands
 
