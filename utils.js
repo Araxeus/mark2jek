@@ -1,10 +1,29 @@
 #!/usr/bin/env node
 
-const readline = require("readline");
-const fs = require("fs");
-const path = require("path");
+import { createInterface } from "readline";
+import { readFileSync } from "fs";
+import { join } from "path";
 
-const { log, code } = require("./cli");
+import { fileURLToPath } from 'url';
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+
+import chalk from "chalk";
+
+const green = chalk.green;
+const red = chalk.red;
+const warning = chalk.hex('#ff8c00'); // Orange
+const info = chalk.cyan;
+const important = chalk.magenta;
+const code = chalk.white.bgBlack;
+
+const log = {
+    out: console.log,
+    info: (e) => log.out(info(e)),
+    important: (e) => log.out(important(e)),
+    error: (e) => log.out(red.bold("Error! " + e)),
+    warn: (e) => log.out(warning("Warning! " + e)),
+    success: (e) => log.out(green("Success! " + e))
+}
 
 const lines = (...lineGroup) => {
     let output = "";
@@ -13,9 +32,13 @@ const lines = (...lineGroup) => {
         output += line;
     } return output;
 }
-exports.lines = lines;
 
-exports.defaultConfig = {
+export { __dirname, lines, green, red, warning, info, important, code, log };
+
+export const coloredValue = (value) =>
+value === true ? green("Enabled") : !value ? red("Disabled") : important(value);
+
+export const defaultConfig = {
     outputName: {
         alias: "new=", value: "",
         description: lines(
@@ -48,11 +71,11 @@ exports.defaultConfig = {
     }
 };
 
-exports.getCollapsibleStyle = () => {
+export function getCollapsibleStyle() {
     try {
         return lines(
             '<style type="text/css" rel="stylesheet">',
-            fs.readFileSync(path.join(__dirname, 'collapsible.css'), { encoding: 'utf8' }),
+            readFileSync(join(__dirname, 'collapsible.css'), { encoding: 'utf8' }),
             '</style>',
             ""
         );
@@ -63,10 +86,10 @@ exports.getCollapsibleStyle = () => {
     }
 }
 
-exports.Prompt = class Prompt {
+export class Prompt {
     constructor(config) {
         this.config = config;
-        this.cmd = readline.createInterface({
+        this.cmd = createInterface({
             input: process.stdin,
             output: process.stdout
         });

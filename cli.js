@@ -1,39 +1,16 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
-const chalk = require('chalk');
-
-const green = chalk.green;
-const red = chalk.red;
-const warning = chalk.keyword('orange');
-const info = chalk.cyan;
-const important = chalk.magenta;
-const code = chalk.white.bgBlack;
-
-const log = {
-    out: console.log,
-    info: (e) => log.out(info(e)),
-    important: (e) => log.out(important(e)),
-    error: (e) => log.out(red.bold("Error! " + e)),
-    warn: (e) => log.out(warning("Warning! " + e)),
-    success: (e) => log.out(green("Success! " + e))
-}
-
-const coloredValue = (value) =>
-    value === true ? green("Enabled") : !value ? red("Disabled") : important(value);
-
-
-exports.log = log;
-exports.code = code;
-
-const {
+import {
+    __dirname,
     lines,
     defaultConfig,
     getCollapsibleStyle,
     Prompt,
-} = require("./utils");
+    green, red, warning, info, important, code, log, coloredValue
+} from "./utils.js";
 
 let filePath;
 let savePath;
