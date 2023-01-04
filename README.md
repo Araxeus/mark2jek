@@ -1,9 +1,9 @@
 <h1 align="center">🏠 <a href="https://github.com/Araxeus/mark2jek">mark2jek<a> - markdown to jekyll converter</h1>
 
 <p align="center">
-<a href ="https://www.npmjs.com/package/mark2jek.svg"><img src="https://img.shields.io/npm/v/mark2jek"></a> 
-<a href ="https://github.com/Araxeus/mark2jek/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"></a> 
-<a href ="https://github.com/Araxeus/mark2jek"><img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>
+<a href ="https://www.npmjs.com/package/mark2jek"><img src="https://img.shields.io/npm/v/mark2jek"></a> 
+<a href ="https://github.com/Araxeus/mark2jek/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow"></a> 
+<a href ="https://github.com/Araxeus/mark2jek"><img src="https://img.shields.io/badge/Maintained%3F-yes-green"></a>
 </p>
 
 > Replace markdown syntax with jekyll/html for compatibility
