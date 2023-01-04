@@ -1,6 +1,6 @@
 {
   "name": "mark2jek",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Replace markdown syntax with jekyll/html for compatibility",
   "main": "cli.js",
   "exports": "./cli.js",
