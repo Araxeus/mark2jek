@@ -117,3 +117,4 @@ dist
 
 .github/
 .gitattributes
+.vscode/settings.json

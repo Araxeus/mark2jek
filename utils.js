@@ -1,13 +1,29 @@
 #!/usr/bin/env node
 
-import { createInterface } from "readline";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { createInterface } from 'readline';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 import { fileURLToPath } from 'url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
-import chalk from "chalk";
+import chalk from 'chalk';
+
+export {
+    __dirname,
+    lines,
+    green,
+    red,
+    warning,
+    info,
+    important,
+    code,
+    log,
+    coloredValue,
+    getCollapsibleStyle,
+    err,
+    Prompt
+};
 
 const green = chalk.green;
 const red = chalk.red;
@@ -18,75 +34,71 @@ const code = chalk.white.bgBlack;
 
 const log = {
     out: console.log,
-    info: (e) => log.out(info(e)),
-    important: (e) => log.out(important(e)),
-    error: (e) => log.out(red.bold("Error! " + e)),
-    warn: (e) => log.out(warning("Warning! " + e)),
-    success: (e) => log.out(green("Success! " + e))
-}
-
-const lines = (...lineGroup) => {
-    let output = "";
-    for (const line of lineGroup) {
-        if (output.length > 0) output += "\n";
-        output += line;
-    } return output;
-}
-
-export { __dirname, lines, green, red, warning, info, important, code, log };
-
-export const coloredValue = (value) =>
-value === true ? green("Enabled") : !value ? red("Disabled") : important(value);
-
-export const defaultConfig = {
-    outputName: {
-        alias: "new=", value: "",
-        description: lines(
-            "Special flag that specify the output filename (relative from input file directory)",
-            `Used only as ${code("new=filename")} or ${code("--new=filename")}. can leave empty to disable (not in setup)`
-        )
-    },
-    pics: {
-        alias: "images", value: true,
-        description: `Converts ${code("![](x)")} to ${code("<img src=x>")}`
-    },
-    nested: {
-        alias: "nestedUrl", value: true,
-        description: `Converts ${code("[![](x)](y)")} to ${code("<a href=y><img src=x></a>")}`
-    },
-    raw: {
-        alias: "githubRaw", value: true,
-        description: "Convert github images to raw version (if needed)"
-    },
-    expand: {
-        alias: "collapsible", value: true,
-        description: `Adds an icon to start collapsible content description (after ${code("<summary>")})`
-    },
-    codeblock: {
-        alias: "liquid", value: true,
-        description: lines(
-            'Replace:', code(lines('```languageName', 'codeblock lines', '```‎')),
-            "With:", code(lines("{% highlight languageName %}", "codeblock lines", "{% endhighlight %}"))
-        )
-    }
+    info: e => log.out(info(e)),
+    important: e => log.out(important(e)),
+    error: e => log.out(red.bold('Error! ' + e)),
+    warn: e => log.out(warning('Warning! ' + e)),
+    success: e => log.out(green('Success! ' + e))
 };
 
-export function getCollapsibleStyle() {
+const lines = (...lineGroup) => {
+    let output = '';
+    for (const line of lineGroup) {
+        if (output.length > 0) output += '\n';
+        output += line;
+    }
+    return output;
+};
+
+const coloredValue = value =>
+    value === true
+        ? green('Enabled')
+        : !value
+        ? red('Disabled')
+        : important(value);
+
+function getCollapsibleStyle() {
     try {
         return lines(
             '<style type="text/css" rel="stylesheet">',
-            readFileSync(join(__dirname, 'collapsible.css'), { encoding: 'utf8' }),
+            readFileSync(join(__dirname, 'collapsible.css'), {
+                encoding: 'utf8'
+            }),
             '</style>',
-            ""
+            ''
         );
-    }
-    catch {
+    } catch {
         log.warn('Could not load custom collapsible css');
-        return "";
+        return '';
     }
 }
 
-export class Prompt {
+function err(errorCode) {
+    switch (errorCode) {
+        case 1:
+            log.error(
+                'Could not load file at: ' +
+                    (Config.filePath || process.argv[2] || 'UNDEFINED')
+            );
+            break;
+        case 2:
+            log.error(
+                'Could not save file to ' +
+                    (Config.savePath ||
+                        Config.flags.outputName.value ||
+                        'UNDEFINED')
+            );
+            break;
+        case 3:
+            log.error(
+                'Invalid arguments. run m2jek `list` or `help` to see all options'
+            );
+            break;
+    }
+    process.exit(errorCode);
+}
+
+class Prompt {
     constructor(config) {
         this.config = config;
         this.cmd = createInterface({
@@ -101,55 +113,62 @@ export class Prompt {
             let answer = await this.asyncQuestion(questionText);
             this.parseAnswer(answer, key);
         } catch (err) {
-            log.warn(err.message || err)
+            log.warn(err.message || err);
         }
     }
 
     async asyncQuestion(text) {
         return new Promise((resolve, reject) => {
             try {
-                this.cmd.question(text, (answer) => {
+                this.cmd.question(text, answer => {
                     resolve(answer);
                 });
-            } catch (e) { reject(e); }
+            } catch (e) {
+                reject(e);
+            }
         });
     }
 
     parseAnswer(answer, key) {
         if (!answer) return;
-        if (key === "outputName") {
+        if (key === 'outputName') {
             answer = (answer.match(/(?!")(.*)(?<!")/) || [null, answer])[1];
             switch (answer.toLowerCase()) {
-                case "delete":
-                case "disable":
-                case "false":
-                case "no":
-                case "n":
-                case "x":
-                case " ":
-                    this.config[key].value = ""; return;
-                case "enable":
-                case "true":
-                case "yes":
-                case "y":
+                case 'delete':
+                case 'disable':
+                case 'false':
+                case 'no':
+                case 'n':
+                case 'x':
+                case ' ':
+                    this.config[key].value = '';
+                    return;
+                case 'enable':
+                case 'true':
+                case 'yes':
+                case 'y':
                     return;
                 default:
-                    this.config[key].value = answer; return;
+                    this.config[key].value = answer;
+                    return;
             }
         } else {
             switch (answer.toLowerCase()) {
-                case "enable":
-                case "true":
-                case "yes":
-                case "y":
-                    this.config[key].value = true; return;
-                case "disable":
-                case "false":
-                case "no":
-                case "n":
-                case "x":
-                    this.config[key].value = false; return;
-                default: return;
+                case 'enable':
+                case 'true':
+                case 'yes':
+                case 'y':
+                    this.config[key].value = true;
+                    return;
+                case 'disable':
+                case 'false':
+                case 'no':
+                case 'n':
+                case 'x':
+                    this.config[key].value = false;
+                    return;
+                default:
+                    return;
             }
         }
     }
