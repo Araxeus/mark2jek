@@ -15,29 +15,27 @@ export default {
                 ...JSON.parse(fs.readFileSync(this.configPath))
             };
         } catch (e) {
-            const ENOENT = e.errno === -4058;
-            if (!ENOENT) {
-                log.warn(
-                    'There has been an error parsing config.json, resetting to default config'
-                );
-            }
             this.flags = {
                 ...this.default
             };
-            this.save(ENOENT);
+
+            if (e.errno !== -4058) { //ENOENT https://nodejs.org/api/errors.html#common-system-errors
+                log.warn(
+                    'There has been an error parsing config.json, resetting to default config'
+                );
+                this.save(); //attempt to reset config.json
+            }
         }
     },
 
-    async save(silent = false) {
-        fs.mkdirSync(path.dirname(this.configPath), { recursive: true });
+    async save() {
         try {
+            fs.mkdirSync(path.dirname(this.configPath), { recursive: true });
             fs.writeFileSync(
                 this.configPath,
                 JSON.stringify(this.flags, null, '\t')
             );
-            if (!silent) {
-                log.success('Saved Configuration');
-            }
+            log.success('Saved Configuration');
         } catch (err) {
             log.warn('Could not save configuration data. details:');
             log.out(err.message);
