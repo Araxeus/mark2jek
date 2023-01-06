@@ -14,25 +14,30 @@ export default {
                 ...this.default,
                 ...JSON.parse(fs.readFileSync(this.configPath))
             };
-        } catch {
-            log.warn(
-                'There has been an error parsing config.json, resetting to default config'
-            );
+        } catch (e) {
+            const ENOENT = e.errno === -4058;
+            if (!ENOENT) {
+                log.warn(
+                    'There has been an error parsing config.json, resetting to default config'
+                );
+            }
             this.flags = {
                 ...this.default
             };
-            this.save();
+            this.save(ENOENT);
         }
     },
 
-    async save() {
+    async save(silent = false) {
         fs.mkdirSync(path.dirname(this.configPath), { recursive: true });
         try {
             fs.writeFileSync(
                 this.configPath,
                 JSON.stringify(this.flags, null, '\t')
             );
-            log.success('Saved Configuration');
+            if (!silent) {
+                log.success('Saved Configuration');
+            }
         } catch (err) {
             log.warn('Could not save configuration data. details:');
             log.out(err.message);
