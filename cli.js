@@ -118,17 +118,22 @@ async function parseFlags(isSet) {
                         delim + element.alias.toLowerCase() === arg)
                 ) {
                     Config.flags[key].value = true;
+                    info();
                 } else if (
                     no + key.toLowerCase() === arg ||
                     (element.alias && no + element.alias.toLowerCase() === arg)
                 ) {
                     Config.flags[key].value = false;
+                    info();
                 }
-                log.info(
-                    `set ${code(key)} / ${code(
-                        Config.flags[key].alias
-                    )} to ${coloredValue(Config.flags[key].value)}`
-                );
+
+                function info() {
+                    log.info(
+                        `set ${code(key)} / ${code(
+                            Config.flags[key].alias
+                        )} to ${coloredValue(Config.flags[key].value)}`
+                    );
+                }
             }
         }
     }
